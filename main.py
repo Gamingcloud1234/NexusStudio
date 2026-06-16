@@ -12,45 +12,51 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for a highly polished, cinematic UI/UX
+# Custom CSS for a highly polished, clean light cinematic UI/UX
 st.markdown("""
     <style>
-    /* Main background and font styling */
+    /* Main background and clean font styling */
     .stApp {
-        background-color: #0b0914;
-        color: #e0e0e6;
+        background-color: #fcfbfe;
+        color: #1f1a3a;
     }
     
-    /* Sidebar styling */
+    /* Light Sidebar styling */
     section[data-testid="stSidebar"] {
-        background-color: #130f26 !important;
+        background-color: #f3f0fa !important;
+        border-right: 1px solid #e1dbf0;
     }
     
     /* Custom Headers */
     .main-title {
         font-family: 'Helvetica Neue', Arial, sans-serif;
         font-weight: 800;
-        color: #ffffff;
+        color: #2e1065;
         text-align: center;
         margin-bottom: 5px;
         letter-spacing: 2px;
     }
     .sub-title {
-        color: #a855f7;
+        color: #7c3aed;
         text-align: center;
         font-size: 1.2rem;
         margin-bottom: 30px;
-        font-weight: 300;
+        font-weight: 400;
     }
     
-    /* Cinematic Movie & Info Cards */
+    /* Cinematic Movie & Info Cards (Light Theme) */
     .movie-card {
-        background: linear-gradient(145deg, #181432, #120e25);
-        border: 1px solid #3b2d6b;
+        background: #ffffff;
+        border: 1px solid #e2e0e8;
         border-radius: 12px;
         padding: 25px;
         margin-bottom: 20px;
-        box-shadow: 0 8px 32px 0 rgba(110, 68, 255, 0.1);
+        box-shadow: 0 4px 20px 0 rgba(124, 58, 237, 0.05);
+    }
+    
+    /* Text overrides inside dark containers if needed */
+    .movie-card h2, .movie-card h4 {
+        color: #2e1065 !important;
     }
     
     /* Footer Styling */
@@ -59,7 +65,7 @@ st.markdown("""
         padding: 30px;
         font-size: 0.9rem;
         color: #6b7280;
-        border-top: 1px solid #1f1a3a;
+        border-top: 1px solid #e5e7eb;
         margin-top: 50px;
     }
     </style>
@@ -133,10 +139,10 @@ if page == "🏠 Home & Latest Release":
     with col2:
         st.markdown("""
             <div class='movie-card'>
-                <h2 style='color: #a855f7; margin-top:0;'>The Last Resistance</h2>
+                <h2 style='margin-top:0;'>The Last Resistance</h2>
                 <p><strong>Genre:</strong> Animated / Minecraft Cinematic Epic</p>
                 <p><strong>Status:</strong> Official Trailer Out Now</p>
-                <p style='color: #9ca3af; line-height: 1.6;'>
+                <p style='color: #4b5563; line-height: 1.6;'>
                     Step into an expansive voxel world facing an unprecedented threat. 
                     As ancient fortresses crumble and shadow armies march across the Overworld, 
                     a disparate band of heroes must unite to stage <b>The Last Resistance</b>.
@@ -152,11 +158,11 @@ if page == "🏠 Home & Latest Release":
     st.markdown("### 🌐 About Our Production House")
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.markdown("<div class='movie-card'><h4>🚀 Our Vision</h4><p style='font-size:0.9rem; color:#9ca3af;'>Pushing the absolute boundaries of digital storytelling, combining community building, unique lore, and crisp cinematic animations.</p></div>", unsafe_allow_html=True)
+        st.markdown("<div class='movie-card'><h4>🚀 Our Vision</h4><p style='font-size:0.9rem; color:#4b5563;'>Pushing the absolute boundaries of digital storytelling, combining community building, unique lore, and crisp cinematic animations.</p></div>", unsafe_allow_html=True)
     with c2:
-        st.markdown("<div class='movie-card'><h4>💻 Next-Gen CGI</h4><p style='font-size:0.9rem; color:#9ca3af;'>Utilizing streamlined tools, advanced graphic fidelity, and specialized scripting pipelines to bring blocks and custom models to life.</p></div>", unsafe_allow_html=True)
+        st.markdown("<div class='movie-card'><h4>💻 Next-Gen CGI</h4><p style='font-size:0.9rem; color:#4b5563;'>Utilizing streamlined tools, advanced graphic fidelity, and specialized scripting pipelines to bring blocks and custom models to life.</p></div>", unsafe_allow_html=True)
     with c3:
-        st.markdown("<div class='movie-card'><h4>🌟 Join the Team</h4><p style='font-size:0.9rem; color:#9ca3af;'>We regularly scout for raw, talented actors, scriptwriters, and voice talent to feature in premium, serialized narrative events.</p></div>", unsafe_allow_html=True)
+        st.markdown("<div class='movie-card'><h4>🌟 Join the Team</h4><p style='font-size:0.9rem; color:#4b5563;'>We regularly scout for raw, talented actors, scriptwriters, and voice talent to feature in premium, serialized narrative events.</p></div>", unsafe_allow_html=True)
 
 # ==========================================
 # PAGE 2: AUDITION CASTING CALL
@@ -167,8 +173,8 @@ elif page == "🎭 Audition Casting Call":
     
     st.markdown("""
         <div class='movie-card'>
-            <h4 style='margin-top:0; color:#a855f7;'>Submission Instructions</h4>
-            <ul style='font-size:0.95rem; color:#cbd5e1; padding-left:20px;'>
+            <h4 style='margin-top:0; color:#7c3aed;'>Submission Instructions</h4>
+            <ul style='font-size:0.95rem; color:#4b5563; padding-left:20px;'>
                 <li>Fill out all active fields accurately so our casting directors can parse your profile.</li>
                 <li>Ensure your active mobile/WhatsApp contact is correct.</li>
                 <li>The review team handles evaluations on a weekly rolling basis. Shortlisted candidates will receive callbacks.</li>
@@ -277,4 +283,5 @@ st.markdown(f"""
         <p style='font-size: 0.8rem;'>Contact: NexusStudioOfficial0@gmail.com | 03199263861</p>
     </div>
 """, unsafe_allow_html=True)
+                     
 
