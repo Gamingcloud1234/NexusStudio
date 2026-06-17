@@ -102,10 +102,11 @@ if 'applicants' not in st.session_state:
 # ==========================================
 with st.sidebar:
     try:
-        st.image("logo.jpg", use_container_width=True)
+        # Aapke logo ka file name yahan set kar diya hai
+        st.image("images (10).jpeg", use_container_width=True)
     except:
         st.header("✨ NEXUS STUDIO")
-        st.caption("⚠️ Upload 'logo.jpg' to GitHub to show image logo here.")
+        st.caption("⚠️ Upload 'images (10).jpeg' to GitHub to show image logo here.")
         
     st.markdown("---")
     page = st.radio("NAVIGATION", ["🏠 Home & Latest Release", "🎭 Audition Casting Call", "🔑 Studio Admin Panel"])
@@ -128,7 +129,7 @@ if page == "🏠 Home & Latest Release":
     
     with col1:
         try:
-            # Aapke thumbnail ka naya naam yahan update kar diya hai
+            # Aapke thumbnail ka file name yahan set kar diya hai
             st.image("IMG-20260616-WA0042.jpg", caption="Now Streaming Worldwide", use_container_width=True)
         except:
             st.info("ℹ️ Upload 'IMG-20260616-WA0042.jpg' to GitHub to show your movie poster here.")
