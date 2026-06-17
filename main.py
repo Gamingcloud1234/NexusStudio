@@ -54,7 +54,6 @@ st.markdown("""
         box-shadow: 0 4px 20px 0 rgba(124, 58, 237, 0.05);
     }
     
-    /* Text overrides inside dark containers if needed */
     .movie-card h2, .movie-card h4 {
         color: #2e1065 !important;
     }
@@ -75,7 +74,6 @@ st.markdown("""
 # INITIALIZE PERSISTENT DATABASE (Session State)
 # ==========================================
 if 'applicants' not in st.session_state:
-    # Seed data with dummy applications for demo purposes
     st.session_state.applicants = pd.DataFrame([
         {
             "ID": 101,
@@ -103,7 +101,6 @@ if 'applicants' not in st.session_state:
 # SIDEBAR NAVIGATION & LOGO
 # ==========================================
 with st.sidebar:
-    # Display Studio Logo
     try:
         st.image("logo.jpg", use_container_width=True)
     except:
@@ -125,16 +122,16 @@ if page == "🏠 Home & Latest Release":
     st.markdown("<h1 class='main-title'>NEXUS STUDIO</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub-title'>Where Imagination Meets Reality</p>", unsafe_allow_html=True)
     
-    # Hero Movie Section
     st.markdown("### 🎬 Latest Blockbuster Release")
     
     col1, col2 = st.columns([2, 1])
     
     with col1:
         try:
-            st.image("thumbnail.jpg", caption="Now Streaming Worldwide", use_container_width=True)
+            # Aapke thumbnail ka naya naam yahan update kar diya hai
+            st.image("IMG-20260616-WA0042.jpg", caption="Now Streaming Worldwide", use_container_width=True)
         except:
-            st.info("ℹ️ Upload 'thumbnail.jpg' to GitHub to show your movie poster here.")
+            st.info("ℹ️ Upload 'IMG-20260616-WA0042.jpg' to GitHub to show your movie poster here.")
             
     with col2:
         st.markdown("""
@@ -150,11 +147,12 @@ if page == "🏠 Home & Latest Release":
             </div>
         """, unsafe_allow_html=True)
         
-        st.button("▶ Watch Official Trailer", use_container_width=True)
+        trailer_url = "https://youtu.be/01wNDCnh6j8?si=Fnz0E4-4vteZK4pF"
+        st.link_button("▶ Watch Official Trailer", trailer_url, use_container_width=True)
+        
         if st.button("🎭 Join the Cast of Next Project", type="primary", use_container_width=True):
             st.info("Switch to the 'Audition Casting Call' tab in the sidebar to apply!")
 
-    # About Us Cards
     st.markdown("### 🌐 About Our Production House")
     c1, c2, c3 = st.columns(3)
     with c1:
@@ -204,7 +202,6 @@ elif page == "🎭 Audition Casting Call":
             if not full_name or not contact_num:
                 st.error("❌ Please provide both your Name and Contact Number to apply.")
             else:
-                # Append new data row securely
                 new_id = st.session_state.applicants["ID"].max() + 1 if len(st.session_state.applicants) > 0 else 101
                 new_row = {
                     "ID": new_id,
@@ -219,7 +216,7 @@ elif page == "🎭 Audition Casting Call":
                 st.session_state.applicants = pd.concat([st.session_state.applicants, pd.DataFrame([new_row])], ignore_index=True)
                 
                 st.balloons()
-                st.success(f"🎉 Success! Thank you {full_name}. Your profile has been locked in under Audition ID #{new_id}. Nexus Studio management will evaluate your profile.")
+                st.success(f"🎉 Success! Thank you {full_name}. Your profile has been locked in under Audition ID #{new_id}.")
 
 # ==========================================
 # PAGE 3: STUDIO ADMIN PANEL
@@ -228,17 +225,15 @@ elif page == "🔑 Studio Admin Panel":
     st.markdown("<h1 class='main-title'>STUDIO MANAGEMENT CORE</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub-title'>Reviewing Applications & Casting Approvals</p>", unsafe_allow_html=True)
     
-    # Secure Password Simulation
     st.sidebar.warning("🔒 Administrative access restricted.")
     password = st.sidebar.text_input("Enter Admin Password", type="password")
     
     if password != "nexus2026":
-        st.info("💡 Please enter the valid Studio Admin Password via the sidebar to view incoming applications and manage applicant rosters.")
+        st.info("💡 Please enter the valid Studio Admin Password via the sidebar to view incoming applications.")
         st.caption("Tip for testing: Password is 'nexus2026'")
     else:
         st.success("🔓 Access Granted. Welcome, Studio Director.")
         
-        # Metrics Row
         df = st.session_state.applicants
         m1, m2, m3, m4 = st.columns(4)
         m1.metric("Total Applicants", len(df))
@@ -248,7 +243,6 @@ elif page == "🔑 Studio Admin Panel":
         
         st.markdown("---")
         
-        # Filter Layout
         st.subheader("📋 Registered Talent Pipeline")
         status_filter = st.selectbox("Quick Status Filter", ["All", "Pending", "Approved", "Rejected"])
         
@@ -257,13 +251,11 @@ elif page == "🔑 Studio Admin Panel":
         if filtered_df.empty:
             st.warning("No applications found matching this status filter.")
         else:
-            # Render a readable clean datatable
             st.dataframe(filtered_df, use_container_width=True, hide_index=True)
             
             st.markdown("---")
             st.subheader("⚙️ Update Selection Verdict")
             
-            # Form actions to change statuses
             with st.form("action_form"):
                 select_id = st.selectbox("Select Applicant ID to evaluate", filtered_df["ID"].tolist())
                 new_status = st.radio("Verdict Decision", ["Pending", "Approved", "Rejected"], horizontal=True)
@@ -283,5 +275,4 @@ st.markdown(f"""
         <p style='font-size: 0.8rem;'>Contact: NexusStudioOfficial0@gmail.com | 03199263861</p>
     </div>
 """, unsafe_allow_html=True)
-                     
 
